@@ -17,11 +17,19 @@
 14.	[What are some of the benefits associated with adopting MetaCall?](#Q14)
 15.	[Are there any challenges associated with MetaCall adoption?](#Q15)
 16.	[How is MetaCall implemented?  What is its high-level architecture?](#Q16)
-17.	[What is Metacall’s scaling model?](#Q17)
+17.	[What is MetaCall’s scaling model?](#Q17)
 18.	[Is MetaCall cross-platform?](#Q18)
 19.	[What are some of the MetaCall use cases?](#Q19)
 20.	[List some of the benefits of MetaCall.](Q20)
-21. [What is the difference between Metacall and AWS Lambda?](#Q21)
+21. [What is the difference between MetaCall and AWS Lambda?](#Q21)
+22.	[How does MetaCall benefit Legacy code migration or evolution?](Q22)
+23. [How does MetaCall help in progressive migration instead of refactoring and rebuilding legacy solutions?](Q23)
+25.	[How does MetaCall offer the benefit of being a common solution for gateway, SQS?](#Q26) 
+26.	[Are there any disadvantages of using MetaCall?](#26)
+27.	[How does MetaCall benefit developer productivity?](#27)
+28.	[Who deploys MetaCall and scales it at runtime?](#Q28)
+29.	[Is MetaCall pluggable and supports different protocols?](#Q29)
+30. [What kind of FaaS does MetaCall support?](#Q30)
 ---
 
 <div id='Q1'/>
@@ -65,8 +73,7 @@ If you look closely, REST APIs comprise of CRUD (Create, Read, Update, Delete) o
 
 Yes, MetaCall is a Polyglot as it can help integrate functionality across application components written in different languages.  
 
-* Currently supports following languages:
-* In future: *TBD Pending*
+For a complete list of supported languages, refer to **[MetaCall Language Support - Backend)](https://github.com/metacall/core#2-language-support-backends)**
 
 <div id='Q7'/>
 
@@ -122,7 +129,7 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
-| ![Metacall Competition][metacall-compet] |
+| ![MetaCall Competition][metacall-compet] |
 |:---:|
 | *MetaCall vs. Competition* |
 
@@ -180,7 +187,7 @@ MetaCall implementation uses a higher-level protocol (QUIC / HTTP3) to reduce RP
 
 <div id='Q17'/>
 
-## 17.	What is Metacall’s scaling model?
+## 17.	What is MetaCall’s scaling model?
 
 MetaCall has unique scaling model that is more granular and more compute resource-efficient than micro-services and REST based API interaction models. MetaCall can scale at 3 levels – per process, per pod and per function-mesh.  Basically, it allows you to do more work with less resources and enables finer-grained resource utilization. {Any benchmark run numbers here would be useful – say with MetaCall, xyz micro-services benchmark ran 5X times faster than without MetaCall.}
 
@@ -217,59 +224,97 @@ MetaCall is a cross platform architecture – supports any of the following Oss
 
 <div id='Q21'/>
 
-## What is the difference between Metacall and AWS Lambda?
+## What is the difference between MetaCall and AWS Lambda?
 
-Unlike Lambda, Metacall does not have cold starts. Refer to the figures below:
+Unlike Lambda, MetaCall does not have cold starts. Refer to the figures below:
 
-|![Lambda Model][lambda]|
+| ![Lambda Model][lambda] |
 |:---:|
-|*Function scaling model with Lambda* |
+| *Function scaling model with Lambda* |
+
 [lambda]: https://github.com/metacall/faq/blob/master/fig/lambda.png
 
-|![MetaCall Model][metacall]|
+| ![MetaCall Model][metacall] |
 |:---:|
-|*Function scaling model with MetaCall* |
+| *Function scaling model with MetaCall* |
+
 [metacall]: https://github.com/metacall/faq/blob/master/fig/metacall.png
 
 
- With Lambda, you can have two or more layers of LB to scale up function and obtain function mesh – see figure. With Metacall, you can have any-to-any function mesh and it is much less expensive.  In Metacall model, each function also acts as a gateway with the help of Metacall library. This tremendously helps in scaling and everything is integrated.  No third party products are required for integrating across languages, platforms and components or routing function calls.
+ With Lambda, you can have two or more layers of LB to scale up function and obtain function mesh – see figure. With MetaCall, you can have any-to-any function mesh and it is much less expensive.  In MetaCall model, each function also acts as a gateway with the help of MetaCall library. This tremendously helps in scaling and everything is integrated.  No third party products are required for integrating across languages, platforms and components or routing function calls.
 
 <div id='Q22'/>
 
-##
+## How does MetaCall benefit Legacy code migration or evolution?
+
+To bring Legacy code to cloud, or to evolve it using newer application architecture models such as micro-services, you need a service like Lambda.  Instead, you can use MetaCall and without rewriting legacy code, migrate some or all its functionality to the cloud.
 
 <div id='Q23'/>
 
-##
+## How does MetaCall help in progressive migration instead of refactoring and rebuilding legacy solutions?
+
+Let us consider this example as shown in figures below:
+
+| ![Phase Approach][phase] |
+|:---:|
+| *Function A calls functions B, C and D, all implemented in PHP * |
+
+[phase]: https://github.com/metacall/faq/blob/master/fig/fn1.png
+
+Fn A is in PHP and it calls code B, C and D. With MetaCall, you can progressively migrate functions to say Node JS or other implementations required as part of evolving the legacy code without having to rewrite or refactor the whole of legacy code. Refer to figures below that show phased migration of PHP code to Node.js:
+
+| ![Phase Approach1][phase1] | ![Phase Approach2][phase2]  | ![Phase Approach3][phase3] | 
+|:---:|:---:|:---:|
+| *Function C is implemented in Node.js and rest code is as is* | *Function B is nmigrated to Node.js* | *Function B, C and D are all in Node.js now* | 
+
+[phase1]: https://github.com/metacall/faq/blob/master/fig/fn2.png
+[phase2]: https://github.com/metacall/faq/blob/master/fig/fn3.png
+[phase3]: https://github.com/metacall/faq/blob/master/fig/fn4.png
+[phase4]: https://github.com/metacall/faq/blob/master/fig/fn5.png
+
+Without MetaCall, you will need 6 months or so to move legacy code into new node.js or other models before you can verify and test. With metacall, you can do it in chunks – it helps with phased migration.  
+
+| ![Phase Approach4][phase4] |
+|:---:|
+| *Legacy code migration and integration in phased manner* |
+
+As indicated in the figure above, with MetaCall, you don’t need two teams – one to maintain legacy and another to refactor the code and make it work again using newer design and application architecture models.  Helps agile and reduces TTM.
+
 
 <div id='Q24'/>
 
-##
+## How is MetaCall different in terms of number of functions that can be invoked or called per file?
 
+Nowadays when you do functions, you can only do one function per file.  MetaCall can do N functions per file. MetaCall allowsyou to write multiple functions in the same deployment. You can keep monolithic architecture or micro-services architecture and MetaCall will slice everything.  Monolith refer to pre MSA or SoA application architecture. {Need to highlight the benefit of this – how does this help developer , project, business}
 
 <div id='Q25'/>
 
-##
+## How does MetaCall offer the benefit of being a common solution for gateway, SQS?
 
+*Answer to be provided by V*
 
 <div id='Q26'/>
 
-##
+## Are there any disadvantages of using MetaCall?
 
+Lots of upside of MetaCall – downside – a small amount of resource is always consumed – to avoid cold starts. 
 
 <div id='Q27'/>
 
-##
+## How does MetaCall benefit developer productivity?
+MetaCall simplifies test and debugging which is a nightmare in distributed application development. Test in local and the same code runs exactly the same way in production – across process, pod and container boundaries. During test it runs local. So no need to test in dev and again in production.
 
 
 <div id='Q28'/>
 
-##
+## Who deploys MetaCall and scales it at runtime? 
+Self – automated? There is way to limit resource consumption – say by $$$ or number of replicas etc. How? {*Elaborate with teh help of V*}
 
 
 <div id='Q29'/>
 
-##
+## Is MetaCall pluggable and supports different protocols?
+MetaCall implementation has two interfaces – on caller side the function gateway uses simple http (for now) – in future it could be pluggable so it could use GraphQL or XML or WebSockets.  At the other end, for function level communication or function gateway, it uses JSON-RPC. That could be pluggable too – it could use QUIC or gRPC  or RabbitMQ – whichever works better for the user in terms of solution performance, required communication bandwidth and latency.
 
 
 <div id='Q30'/>
