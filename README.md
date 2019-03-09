@@ -115,7 +115,7 @@ Refer to the picture below.  It shows how MetaCall differs from competition:
 
 ![MetaCall Competition][metacall-compet]
 
-[metacall-compet]: hhttps://github.com/metacall/faq/blob/master/fig/metacall-compet.png
+[metacall-compet]: https://github.com/metacall/faq/blob/master/fig/metacall-compet.png
 
 
 
