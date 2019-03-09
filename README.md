@@ -122,9 +122,11 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
-|![MetaCall Competition][https://github.com/metacall/faq/blob/master/fig/metacall-compet.png]|
+| ![Metacall Competition][metacall-compet] |
 |:---:|
 | *MetaCall vs. Competition* |
+
+[metacall-compet]: https://github.com/metacall/faq/blob/master/fig/metacall-compet.png
 
 <div id='Q13'/>
 
