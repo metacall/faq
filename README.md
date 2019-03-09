@@ -14,7 +14,7 @@
 11. [Is MetaCall meant for private function calls or also for public APIs?](#Q11)
 12.	[What are the key MetaCall differentiations factors from say OpenFaaS, Zeit, Kubeless, other competing technologies?](#Q12)
 13. [Is there any benchmark data to show how MetaCall compares with alternative technologies?](#Q13)
-14.	[What are some of the benefits associated with adopting MetaCall?}(#Q14)
+14.	[What are some of the benefits associated with adopting MetaCall?](#Q14)
 15.	[Are there any challenges associated with MetaCall adoption?](#Q15)
 16.	[How is MetaCall implemented?  What is its high-level architecture?](#Q16)
 17.	[What is Metacall’s scaling model?](#Q17)
