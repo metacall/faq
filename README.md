@@ -8,6 +8,8 @@
 5. [How is Metacall different from REST and RPC?](#MetdiffRestRPC)
 6. [Is Metacall a Polyglot?](#ispolyglot)
 7. [Who is the target audience for Metacall?](#targetaudience)
+8. [Which applications / workloads have the potential to benefit the most from Metacall?](#whichappbenefits)
+9. [Can Metacall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?](#appstypesupp)
 ---
 ## What is Metacall?
 Metacall helps you build serverless applications using a more fine-grained, scalable and NoOps oriented FunctionMesh instead of ServiceMesh and DevOps approach. MetaCall automagically converts your code into a **[Function Mesh](https://medium.com/@metacall/function-mesh-architecture-c0304ba4bad0)** and auto-scales individual hot parts or functions of your app. 
@@ -45,6 +47,25 @@ Yes, Metacall is a Polyglot as it can help integrate functionality across applic
 **Target Audience**: Developers, Solution Architects.
 
 **Key Use case**:
+
 Metacall is useful for enterprises that need to migrate legacy or traditional non-micro-services architecture based distributed application solutions (monolithic, SoA) without refactoring the entire code base.  It is also very useful for developer’s productivity and eliminates the need to setup complex K8s cluster for testing code in production.  
 
 Metacall enables developers to test the code in local just as it would run in production – saves time and resources and brings solutions to market faster.
+
+## Which applications / workloads have the potential to benefit the most from Metacall?
+
+|   Application Type               |   Benefits with MetaCall   |   Comments             |
+|----------------------------------|:--------------------------:|------------------------|
+| Application with persistent or long-lived interactions and inter-service connections for performing tasks that can scale up or down quickly| Yes         |     `Need confirmation from V`     |
+| Applications with short term intermittent communication across components or micro-services where these interactions can scale up or down fast | Yes         |     `Need confirmation from V`     |
+| Applications that are not front-end facing but in deeper end of the stack and deal with caches, databases and intermediary services |Yes         |     `Need confirmation from V`     |
+| Applications with bi-directional data flow |? | |
+| CPU-centric applications |? | |
+| I/O intensive applications |? | |
+| Message Broker based big data applications? (ETL, Hadoop, Spark, Flink – data warehousing apps) | ? | |
+| Real time messaging application for Big Data Analytics | ? | *Need confirmation from V* **[Reference: Real time messaging for analytics](https://medium.com/@natemurthy/rest-rpc-and-brokered-messaging-b775aeb0db3)**|
+---
+
+## Can Metacall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?
+
+Metacall can be used for either of the above.  It is not limited to an application architecture type.
