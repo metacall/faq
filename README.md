@@ -21,6 +21,7 @@
 18.	[Is MetaCall cross-platform?](#Q18)
 19.	[What are some of the MetaCall use cases?](#Q19)
 20.	[List some of the benefits of MetaCall.](Q20)
+21. [What is the difference between Metacall and AWS Lambda?](#Q21)
 ---
 
 <div id='Q1'/>
@@ -121,8 +122,9 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
-![MetaCall Competition][metacall-compet]
-
+|![MetaCall Competition][metacall-compet]|
+|:---:|
+|*MetaCall vs. Competition* |
 [metacall-compet]: https://github.com/metacall/faq/blob/master/fig/metacall-compet.png
 
 <div id='Q13'/>
@@ -133,13 +135,13 @@ Here is some of the available benchmark data for MetaCall (beta). More benchmark
 
 **Test Description**
 
-Simple function that merges two strings
+Simple function that merges two strings using the following technologies:
 
 1.	Flask (Python http server)
 2.	Express (Node.js http server)
 3.	MetaCall with Python
 4.	MetaCall with Node.js
-5.	NginX (no back end at all
+5.	NginX (no back end at all)
 
 **Results:** 
 
@@ -200,11 +202,36 @@ MetaCall is a cross platform architecture – supports any of the following Oss
 
 ## List some of the benefits of MetaCall.
 
-Benefit of MetaCall – MetaCall enables developers to test their code locally while the same code can be run across clusters at runtime.  It saves on test/debug resources and helps with developer productivity. During development time, there is no dependency on launching K8s cluster, or installing Minikube or testing by using AWS/cloud resources. Saves time, reduces need of test resources and saves cloud resource costs.
+- Developer Productivity
+  * MetaCall enables developers to test their code locally while the same code can be run across clusters at runtime.  
+  * It saves on test/debug resources and helps with developer productivity.
+  * During development and testing, there is no dependency on launching K8s cluster, or installing Minikube or testing by using AWS/cloud resources. 
+
+- Saves time, lowers costs
+  * MetaCall reduces the need of additional test resources required for cluster setup and testing
+  * Helps to save cloud resource costs
+
+- Simplifies and speeds up Legacy code and cloud technologies integration
+ * Instead of total refactoring to bring legacy code to cloud, MetaCall allows phasewise and staged migration of chunks of functionality to contemporary cloud application architectures models as it allows function calls across language, node and process boundaries.
 
 <div id='Q21'/>
 
-##
+## What is the difference between Metacall and AWS Lambda?
+
+Unlike Lambda, Metacall does not have cold starts. Refer to the figures below:
+
+|![Lambda Model][lambda]|
+|:---:|
+|*Function scaling model with Lambda* |
+[lambda]: https://github.com/metacall/faq/blob/master/fig/lambda.png
+
+|![MetaCall Model][metacall]|
+|:---:|
+|*Function scaling model with MetaCall* |
+[metacall]: https://github.com/metacall/faq/blob/master/fig/metacall.png
+
+
+ With Lambda, you can have two or more layers of LB to scale up function and obtain function mesh – see figure. With Metacall, you can have any-to-any function mesh and it is much less expensive.  In Metacall model, each function also acts as a gateway with the help of Metacall library. This tremendously helps in scaling and everything is integrated.  No third party products are required for integrating across languages, platforms and components or routing function calls.
 
 <div id='Q22'/>
 
