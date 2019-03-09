@@ -111,6 +111,12 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 ## What are the key Metacall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless}(https://kubeless.io/)**, other competing technologies?
 
+Refer to the picture below.  It shows how MetaCall differs from competition:
+
+![MetaCall Competition][metacall-compet]
+
+[metacall-compet]: hhttps://github.com/metacall/faq/blob/master/fig/metacall-compet.png
+
 
 
 <div id='Q13'/>
