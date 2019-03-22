@@ -1,12 +1,15 @@
 # FAQ
+
 **MetaCall Frequently Asked Questions.**
+
+Last update: March 22, 2019
 
 ## Section A:  General
 
 1. [What is MetaCall?](#AQ1)
 2. [What is MetaCall used for?](#AQ2)
 3. [Does Function Mesh application architecture pattern benefit from MetaCall technology?](#AQ3)
-4. [Can Function Mesh be implemented without MetaCall?](#AQ4)
+4. [There is any technology similar to MetaCall Function Mesh?](#AQ4)
 5. [Is MetaCall a Polyglot?](#AQ5)
 6. [Who is the target audience for MetaCall?](#AQ6)
 7. [Which applications / workloads have the potential to benefit the most from MetaCall?](#AQ7)
@@ -60,27 +63,35 @@ MetaCall not only helps to simplify application development but also speedsup ti
 
 *	MetaCall enables a new, smarter and productive way to develop distributed systems. It is a library that allows you to execute code across boundaries – be it language, process, pod, container, node or server boundaries. Your code could be in language X and it can invoke functions implemented in languages X, Y, and Z where X, Y, Z are the set of supported languages in MetaCall core. 
 
-*	CRUD via HTTP in REST APIs is a form of RPC with limited functions. MetaCall extends the abstraction to any function that can be called remotely and not just limited to semantics of CRUD. (Note REST, i.e., CRUD over HTTP is sort of a degenerate form of RPC). Over and above these functions could be implemented in a different programming language and running on a different pod / container / server / node distributed geographically. (?)
+*	CRUD via HTTP in REST APIs is a form of RPC with limited functions. MetaCall extends the abstraction to any function that can be called remotely and not just limited to semantics of CRUD. (Note REST, i.e., CRUD over HTTP is sort of a degenerate form of RPC). Over and above these functions could be implemented in a different programming language and running on a different pod / container / server / node distributed geographically.
 
 <div id='AQ3'/>
 
 ### Does Function Mesh application architecture pattern benefit from MetaCall technology?
 
-Function Mesh is a new transparent way to inter-connect serverless functions. Function Mesh enables building of complex distributed systems while efficiently scaling only the hot functional parts of the system. MetaCall is an enabling technology that helps to build the function gateway of sorts, under the covers. The only thing developers need to care about is writing a small configuration file indicating what code they want to publish and the function gateway will be automatically created by MetaCall.  Scaling up and down of MetaCall instances happens in an automatic manner governed by certain configurable limits such as $$ spent for resources, response time or latencies. {Elaborate – is there anything unique that MetaCall does for FunctionMesh that others cannot – such as **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless](https://kubeless.io/)**?}
+Function Mesh is a new transparent way to inter-connect serverless functions. Function Mesh enables building of complex distributed systems while efficiently scaling only the hot functional parts of the system. MetaCall is an enabling technology that helps to build the function gateway of sorts, under the covers. The only thing developers need to care about is writing a small configuration file indicating what code they want to publish and the function gateway will be automatically created by MetaCall. Scaling up and down of MetaCall instances happens in an automatic manner governed by certain configurable limits such as $$ spent for resources, response time or latencies.
+
+Function Mesh introduces a new way of development. It is possible to develop a complete monolith service and this will be scaled depending on the hot parts of the application. The Function Mesh will grow and subdivide parts of the monolith if needed or shrink when the workload is lower. At the same time it is non-intrusive. This means you can code normal applications without needing a new complete framework or architecting the code or infrastructure. At the same time, that code can be tested and debugged locally without needing clusters like Kubernetes or complex environments with many layers of abstraction. The developer can use existing common tools, debuggers and test runners. You can build a complete distributed system in a single project without worrying about the infrastructure.
 
 <div id='AQ4'/>
 
-### Can Function Mesh be implemented without MetaCall?
+### There is any technology similar to MetaCall Function Mesh?
 
-*Answer TBD - For e.g., RPC, REST APIs - are those used to build function mesh without using MetaCall?*
+Nowadays it is possible to implement Service Mesh in your architecture. Service Mesh is a practical way to interconnect services in your architecture. You can use tools like [Istio](https://istio.io/) (Service Mesh) and [OpenFaaS](https://www.openfaas.com/) (FaaS) on top of [Kubernetes](https://kubernetes.io/) (Orchestrator) to build your architecture. Other alternatives are appearing, like [OpenFaaS Flow](https://github.com/s8sg/faas-flow) to interconnect functions.
+
+This solutions have drawbacks. Kubernetes itself is a really complex tool that has a difficult learning curve, and OpenFaaS and Istio introduce even more complexity and knowledge. The resulting architecture can be powerful, but really difficult to build. Apart from this, testing the system must be done in the cloud, or in a powerful local machine, to handle the whole cluster and the consumption of all this systems. In addition, Service Mesh has the drawback that it injects a proxy for each pod or service instance, duplicating the size of the processes the cluster must handle and adding an intermediate layer between the functions.
+
+The idea MetaCall Function Mesh is to unify the development. MetaCall allows a non-intrusive way to develop this architecture, without handling all cluster and complex tools by yourself (no more yaml abuse). In addition, in the Function Mesh each function is a load balancer and proxy at the same time. It takes advantage of concurrency and it also can be scaled horizontally, creating a uniform matrix of functions interconnected. Three levels of scalability that can drastically reduce costs, improve performance, and simplify the life of the developer.
 
 <div id='AQ5'/>
 
 ### Is MetaCall a Polyglot? 
 
-Yes, MetaCall is a Polyglot as it can help integrate functionality across application components written in different languages.  
+MetaCall can be seen as a Polyglot. A multi-language interpreter that can execute different programming languages at the same time. But MetaCall itself is not a MetaVirtualMachine, in fact it only provides foreign function interface calls between programming languages. It can help integrate functionality across application components written in different languages. We are using it to build our core for the FaaS. By this way we achieve an high performance of the execution of the calls.
 
-For a complete list of supported languages, refer to **[MetaCall Language Support - Backend)](https://github.com/metacall/core#2-language-support-backends)**
+For a complete list of supported languages, refer to **[MetaCall Language Support - Backend](https://github.com/metacall/core#2-language-support-backends)**.
+
+For testing performance of MetaCall calls, refer to **[MetaCall Benchmarks](https://github.com/metacall/core/tree/develop/source/benchmarks)**.
 
 <div id='AQ6'/>
 
