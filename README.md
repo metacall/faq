@@ -350,53 +350,80 @@ In this question, we will try to answer the following queries related to MetaCal
 
 * How does MetaCall based application compare with an optimized application system built using various AWS functionalities including Lambda?  Is it time saved to deployment? Is one better than the other in the long run?  What are the features that separate MetaCall from the rest?
 
-First implementation of Lambda functions was done by Amazon. They did not change so much since 2014 when they appeared. Microsoft Azure or Google Cloud just copied them. The main drawbacks of this functions respect to MetaCall are the following:
+Since it first appeared in 2014, AWS Lambda function implementation has not changed much. Microsoft Azure and Google cloud implemented very similar functions. The main drawback of these technologies as compared to MetaCall are detailed below:
 
-- Current Lambda implementations are handlers in the form of:
-exports.handler = async (event) => {
-    return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "text/html"
-    },
-    body: "Hello",
-  };
+* Current Lambda implementations are handlers in the form of: 
+
+```
+exports.handler = async (event) => { 
+    return { 
+        statusCode: 200, 
+        headers:{ 
+            "Content-Type": "text/html"
+        }, 
+        body: "Hello", 
+    }; 
 };
+```
 
-This is not a function at all. In fact, it is a handler, similar to the ones that exist in micro-services. A part from this, you will need to use AWS API Gateway in order to provide a valid REST endpoint to the Lambda handler. This complicates the problem. You will have an high granularity and also you will need to use other services to make it work. Your application will be split into many handlers eventually, making it harder to manage. For example, for 10 lambda functions you will need to make 10 deployments and then write 10 entries into API Gateway. If we start to talk about DataBase or Queue services, the list begins to grow, and if we try to inter-connect other Lambdas to build a complete application it gets more and more difficult.
+Handlers are **[different](https://softwareengineering.stackexchange.com/questions/205846/difference-between-trigger-handler-and-callback) from events or a function (callback). This handler is similar to the ones that exist in micro-services. When you use AWS Lambda, besides handlers, you will need to use AWS API Gateway in order to provide a valid REST endpoint to the Lambda handler. This complicates the problem multi-fold. Although it offers high granularity in terms of resource consumption, it imperates the use of other AWS services to make it work. Eventually, your application or solution will have to be split into many handlers, making it harder to manage. 
 
-MetaCall functions look like this (making it async is optional):
-exports.hello_world = () => {
-return "Hello";
+For example, 10 lambda functions require 10 separate deployments and 10 additional entries into the API Gateway. If you consider Database or Message Queue service implementations, then this resource and service dependency list begins to grow even further. Now imagine, if we try to inter-connect other kinds of Lambdas to build a complete application, it just gets more and more complex.
+
+MetaCall deals with callback or a function which is very different from a handler. A function is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time. The invocation may be immediate as in a synchronous callback, or it might happen at later time as in an asynchronous callback.
+
+MetaCall functions look like as shown below:  
+
+```
+exports.hello_world = () => { 
+    return "Hello"; 
 }
+```
 
-Instead of looking like a handler, it looks like a normal function, that can be unit tested locally with common development tools. There is no need of extra framework in order to debug it or test it. Also, you can add more functions in the same file and they will be deployed separately. If you want to call other functions, you just have to call it like a normal function:
+Instead of looking like a handler, a MetaCall function looks like a normal function, that can be unit tested locally with common development tools. There is no need of extra framework or resource deployment in order to debug it or test it. Also, you can add more functions in the same file and they will be deployed separately. 
+
+If you want to call other functions, you just have to call it like a normal function: 
+
+```
 import { other_function } from 'lib';
 
-exports.hello_world = () => {
-return other_function();
-}
+    exports.hello_world = () => { 
+        return other_function(); 
+    }
+```
 
-This will build a function mesh for you. The function ‘other_function’ may be executed on another peer, and the network resolution, scalability, and everything will be automatically solved.
+This will build a function mesh for you. The function ‘other_function’ may be executed on another peer, and the network resolution, scalability, and everything will be automatically taken care of by MetaCall.
 
-This allows to the developer the following things:
-- You can develop monolith applications that will be fully distributed.
-- You have API Gateway integrated with the functions.
-- Your functions can be tested locally, because they are normal functions and after being upload to the FaaS they will be automatically scaled.
-- The development lifecycle can be speed up, and the developer will feel less friction when implementing the software (less granularity).
-- The developer will not need to understand AWS or any other vendor with their own development tools (MetaCall integrates with repositories seamlessly).
-- You wont be charged with an high segmentation and obfuscated costs. You will be able to see all telemetry and consumption of your code.
+Following are a list of benefits that MetaCall usage brings in to the developers and modern application development process:
+1. Developers can build monolithic applications that will be fully distributed through MetaCall model.
 
-Compared to AWS Lambda, we avoid also other drawbacks.
-- We do not have cold starts.
-- We automatically build all dependencies with your functions in a standard way, using existing package managers.
-- We integrate into normal developer code, without complex frameworks, reducing vendor locking.
-- We allow to test code locally and run it later on in the FaaS with equivalent distributed execution.
-- We scale hot parts of your application depending on the workload and the function calls for each function published in the function mesh (the function mesh can be subdivided or shrank depending on the workload).
-- We allow persistence though functions just by exporting common objects or arrays in the code.
+2. MetaCall brings in an integrated API Gateway along with the functions, so there is no need for updating API Gateways for each function as in the case of AWS Lambda.
 
-So instead of using AWS API Gateway, DynamoDB, Lambda, Elastic Load Balancer, Simple Queue Service... (among others), we solve all that problems at the same time, without DevOps (no learning curve or new framework needed), thus improving development allowing local testing. And the function mesh allows a more effective way of scaling, so we can scale horizontally, vertically and in a new third dimension introduced by the code splitting. Again, with no cost or new knowledge for the developer.
+3. MetaCall allows application developers to write functions that can be tested locally, and validated globally in one shot. This is because they are normal functions and after being upload to the FaaS they will be automatically scaled.  Developers do not have to first test and then verify the deployment in production.
 
-And there is an extra plus, the existing code can be migrated to MetaCall easily, because as it does not need a new framework, it can consume classical functions. Migrations to FaaS environment can be done automatically.
+4. With MetaCall usage, the organization’s development lifecycle can be speeded up.  The developer encounters less friction when implementing the software.
 
+5. MetaCall abstracts and hides the nuances and differences across multiple cloud vendors. With MetaCall, the developer will not be required to understand AWS or any other vendor specific implementation models because MetaCall integrates with repositories seamlessly.
+
+6. MetaCall pricing is transparent and simpler. You will not have to deal with high segmentation and obfuscated costs. You will be able to see all telemetry and consumption of your code.
+
+Here is how MetaCall overcomes some of the drawbacks associated with AWS Lambda:
+
+* Metacall does not have **[typical serverless cold start] (https://thenewstack.io/how-cold-starts-impact-serverless-performance/)** performance issues.
+
+* MetaCall automatically builds all dependencies with your functions in a standard way, using existing package managers.
+
+* MetaCall is simple to use as it integrates into normal developer code, without complex frameworks, thus reducing vendor lock-in.
+
+* Unlike AWS Lambda or typical serverless models, MetaCall enables you to test code locally and run it, later on, in the FaaS, with equivalent distributed execution without having to test it twice – once locally and then in production.
+
+* MetaCall scales hot parts of your application depending on the workload and the function calls for each function published in the function mesh. The function mesh can be subdivided or compressed depending on the workload.
+
+* MetaCall allows persistence though functions just by exporting common objects or arrays in the code. 
+
+In short, instead of having to use AWS API Gateway, DynamoDB, Lambda, Elastic Load Balancer, Simple Queue Service... (among others), MetaCall solves application scaling and distribution problem at the same time, without DevOps. There is no learning curve or new framework needed for MetaCall use. Local testing capability significantly improves development time and cuts down on resource usage. The function mesh model allows for a more effective way of scaling, so we can scale horizontally, vertically and in a new third dimension introduced by the code splitting. 
+
+All this is taken care of by MetaCall, with no additional cost or new knowledge required for the developer.
+
+Besides the above, with MetaCall, there is an extra benefit: your existing code can be migrated to MetaCall easily, because as it does not need a new framework. MetaCall can consume classical functions. Migrations to MetaCall based FaaS environment can be done automatically.
 
