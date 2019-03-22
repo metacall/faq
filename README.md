@@ -1,6 +1,8 @@
 # FAQ
 **MetaCall Frequently Asked Questions.**
 
+## General
+
 1. [What is MetaCall?](#Q1)
 2. [What is MetaCall used for?](#Q2)
 3. [Does Function Mesh application architecture pattern benefit from MetaCall technology?](#Q3)
@@ -30,18 +32,22 @@
 28.	[Who deploys MetaCall and scales it at runtime?](#Q28)
 29.	[Is MetaCall pluggable and supports different protocols?](#Q29)
 30. [What kind of FaaS does MetaCall support?](#Q30)
+
+## MetaCall vs. other similar technologies
+
+31. [Is MetaCall similar to AWS Lambda, Microsoft Azure Functions and Twilio? ](#Q31)
 ---
 
 <div id='Q1'/>
 
-## What is MetaCall?
+### What is MetaCall?
 MetaCall helps you build serverless applications using a more fine-grained, scalable and NoOps oriented FunctionMesh instead of ServiceMesh and DevOps approach. MetaCall automagically converts your code into a **[Function Mesh](https://medium.com/@metacall/function-mesh-architecture-c0304ba4bad0)** and auto-scales individual hot parts or functions of your app. 
 
 MetaCall not only helps to simplify application development but also speedsup time to market. Developers can focus purely on code and  business logic instead of expending expensive development cycles on DevOps.
 
 <div id='Q2'/>
 
-## What is MetaCall used for?
+### What is MetaCall used for?
 
 *	The purpose of MetaCall is to integrate local development with function-mesh transparently.
 
@@ -51,25 +57,25 @@ MetaCall not only helps to simplify application development but also speedsup ti
 
 <div id='Q3'/>
 
-## Does Function Mesh application architecture pattern benefit from MetaCall technology?
+### Does Function Mesh application architecture pattern benefit from MetaCall technology?
 
 Function Mesh is a new transparent way to inter-connect serverless functions. Function Mesh enables building of complex distributed systems while efficiently scaling only the hot functional parts of the system. MetaCall is an enabling technology that helps to build the function gateway of sorts, under the covers. The only thing developers need to care about is writing a small configuration file indicating what code they want to publish and the function gateway will be automatically created by MetaCall.  Scaling up and down of MetaCall instances happens in an automatic manner governed by certain configurable limits such as $$ spent for resources, response time or latencies. {Elaborate – is there anything unique that MetaCall does for FunctionMesh that others cannot – such as **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless](https://kubeless.io/)**?}
 
 <div id='Q4'/>
 
-## Can Function Mesh be implemented without MetaCall?
+### Can Function Mesh be implemented without MetaCall?
 
 *Answer TBD - For e.g., RPC, REST APIs - are those used to build function mesh without using MetaCall?*
 
 <div id='Q5'/>
 
-## How is MetaCall different from REST and RPC?
+### How is MetaCall different from REST and RPC?
 
 If you look closely, REST APIs comprise of CRUD (Create, Read, Update, Delete) operations using HTTP. It is sort of RPC with limited functions the CRUD. MetaCall extends this abstraction to any function that can be called remotely and not just limited to semantics of CRUD. In other words, REST, ie, CRUD over HTTP is sort of a degenerate form of RPC. In addition, these functions could be implemented in a different programming language and may be running on a different pod or container or node or server which is distributed geographically.  TBD - How MetaCall is different from RPC or is it?
 
 <div id='Q6'/>
 
-## Is MetaCall a Polyglot? 
+### Is MetaCall a Polyglot? 
 
 Yes, MetaCall is a Polyglot as it can help integrate functionality across application components written in different languages.  
 
@@ -77,7 +83,7 @@ For a complete list of supported languages, refer to **[MetaCall Language Suppor
 
 <div id='Q7'/>
 
-## Who is the target audience for MetaCall?
+### Who is the target audience for MetaCall?
 **Target Audience**: Developers, Solution Architects.
 
 **Key Use case**:
@@ -88,7 +94,7 @@ MetaCall enables developers to test the code in local just as it would run in pr
 
 <div id='Q8'/>
 
-## Which applications / workloads have the potential to benefit the most from MetaCall?
+### Which applications / workloads have the potential to benefit the most from MetaCall?
 
 |   Application Type               |   Benefits with MetaCall   |   Comments             |
 |----------------------------------|:--------------------------:|------------------------|
@@ -104,7 +110,7 @@ MetaCall enables developers to test the code in local just as it would run in pr
 
 <div id='Q9'/>
 
-## Can MetaCall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?
+### Can MetaCall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?
 
 MetaCall can be used for either of the above.  It is not limited to an application architecture type.
 
@@ -125,7 +131,7 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 <div id='Q12'/>
 
-## What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless}(https://kubeless.io/)**, other competing technologies?
+### What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless}(https://kubeless.io/)**, other competing technologies?
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
@@ -137,7 +143,7 @@ Refer to the picture below.  It shows how MetaCall differs from competition:
 
 <div id='Q13'/>
 
-## Is there any benchmark data to show how MetaCall compares with alternative technologies?
+### Is there any benchmark data to show how MetaCall compares with alternative technologies?
 
 Here is some of the available benchmark data for MetaCall (beta). More benchmarking tests are underway and will be updated shortly.
 
@@ -162,7 +168,7 @@ No connections used, only function calls to understand performance overhead of c
 
 <div id='Q14'/>
 
-## What are some of the benefits associated with adopting MetaCall?
+### What are some of the benefits associated with adopting MetaCall?
 
 Following is a placeholder answer, we need to refine it as per V's inputs.
 
@@ -175,32 +181,32 @@ Following is a placeholder answer, we need to refine it as per V's inputs.
 
 <div id='Q15'/>
 
-## Are there any challenges associated with MetaCall adoption?
+### Are there any challenges associated with MetaCall adoption?
 
 - MetaCall uses QUIC (HTTP/3) technology underneath. As of **[November 2018](https://www.zdnet.com/article/http-over-quic-to-be-renamed-http3/)**, 31.2% of top 10 million websites support HTTP/2 and only 1.2% sites support QUIC.  Is this going to be a limiting factor for MetaCall adoption?
 
 <div id='Q16'/>
 
-## How is MetaCall implemented?  What is its high-level architecture?
+### How is MetaCall implemented?  What is its high-level architecture?
 
 MetaCall implementation uses a higher-level protocol (QUIC / HTTP3) to reduce RPC overheads.  It uses a high-performance multi-core asynchronous I/O model.
 
 <div id='Q17'/>
 
-## 17.	What is MetaCall’s scaling model?
+### What is MetaCall’s scaling model?
 
 MetaCall has unique scaling model that is more granular and more compute resource-efficient than micro-services and REST based API interaction models. MetaCall can scale at 3 levels – per process, per pod and per function-mesh.  Basically, it allows you to do more work with less resources and enables finer-grained resource utilization. {Any benchmark run numbers here would be useful – say with MetaCall, xyz micro-services benchmark ran 5X times faster than without MetaCall.}
 
 <div id='Q18'/>
 
-## Is MetaCall cross-platform?
+### Is MetaCall cross-platform?
 MetaCall is a cross platform architecture – supports any of the following Oss
 	Currently: Debian Linux
 	In future: OSX (?)
 
 <div id='Q19'/>
 
-## What are some of the MetaCall use cases and examples?
+### What are some of the MetaCall use cases and examples?
 
 **MetaCall use cases** – TBD
 
@@ -208,7 +214,7 @@ MetaCall is a cross platform architecture – supports any of the following Oss
 
 <div id='Q20'/>
 
-## List some of the benefits of MetaCall.
+### List some of the benefits of MetaCall.
 
 - Developer Productivity
   * MetaCall enables developers to test their code locally while the same code can be run across clusters at runtime.  
@@ -224,7 +230,7 @@ MetaCall is a cross platform architecture – supports any of the following Oss
 
 <div id='Q21'/>
 
-## What is the difference between MetaCall and AWS Lambda?
+### What is the difference between MetaCall and AWS Lambda?
 
 Unlike Lambda, MetaCall does not have cold starts. Refer to the figures below:
 
@@ -245,13 +251,13 @@ Unlike Lambda, MetaCall does not have cold starts. Refer to the figures below:
 
 <div id='Q22'/>
 
-## How does MetaCall benefit Legacy code migration or evolution?
+### How does MetaCall benefit Legacy code migration or evolution?
 
 To bring Legacy code to cloud, or to evolve it using newer application architecture models such as micro-services, you need a service like Lambda.  Instead, you can use MetaCall and without rewriting legacy code, migrate some or all its functionality to the cloud.
 
 <div id='Q23'/>
 
-## How does MetaCall help in progressive migration instead of refactoring and rebuilding legacy solutions?
+### How does MetaCall help in progressive migration instead of refactoring and rebuilding legacy solutions?
 
 Let us consider this example as shown in figures below:
 
@@ -283,40 +289,48 @@ As indicated in the figure above, with MetaCall, you don’t need two teams – 
 
 <div id='Q24'/>
 
-## How is MetaCall different in terms of number of functions that can be invoked or called per file?
+### How is MetaCall different in terms of number of functions that can be invoked or called per file?
 
 Nowadays when you do functions, you can only do one function per file.  MetaCall can do N functions per file. MetaCall allowsyou to write multiple functions in the same deployment. You can keep monolithic architecture or micro-services architecture and MetaCall will slice everything.  Monolith refer to pre MSA or SoA application architecture. {Need to highlight the benefit of this – how does this help developer , project, business}
 
 <div id='Q25'/>
 
-## How does MetaCall offer the benefit of being a common solution for gateway, SQS?
+### How does MetaCall offer the benefit of being a common solution for gateway, SQS?
 
 *Answer to be provided by V*
 
 <div id='Q26'/>
 
-## Are there any disadvantages of using MetaCall?
+### Are there any disadvantages of using MetaCall?
 
 Lots of upside of MetaCall – downside – a small amount of resource is always consumed – to avoid cold starts. 
 
 <div id='Q27'/>
 
-## How does MetaCall benefit developer productivity?
+### How does MetaCall benefit developer productivity?
 MetaCall simplifies test and debugging which is a nightmare in distributed application development. Test in local and the same code runs exactly the same way in production – across process, pod and container boundaries. During test it runs local. So no need to test in dev and again in production.
 
 
 <div id='Q28'/>
 
-## Who deploys MetaCall and scales it at runtime? 
+### Who deploys MetaCall and scales it at runtime? 
 Self – automated? There is way to limit resource consumption – say by $$$ or number of replicas etc. How? {*Elaborate with teh help of V*}
 
 
 <div id='Q29'/>
 
-## Is MetaCall pluggable and supports different protocols?
+### Is MetaCall pluggable and supports different protocols?
 MetaCall implementation has two interfaces – on caller side the function gateway uses simple http (for now) – in future it could be pluggable so it could use GraphQL or XML or WebSockets.  At the other end, for function level communication or function gateway, it uses JSON-RPC. That could be pluggable too – it could use QUIC or gRPC  or RabbitMQ – whichever works better for the user in terms of solution performance, required communication bandwidth and latency.
 
 
 <div id='Q30'/>
 
-##
+### What kind of FaaS does MetaCall support?]
+*Answer TBD*
+
+<div id='Q31'/>
+
+### Is MetaCall similar to AWS Lambda, Microsoft Azure Functions and Twilio?
+AWS Lambda and Microsoft Azure functions are generic serverless platforms that can be used to create FaaS solutions. Twilio is a cloud-based enterprise contact centre software platform which is specialized for communications code (SMS, Text, Voice) and allows creation of Twilio based apps for contact center, marketing and customer engagement.
+
+MetaCall is similar to AWS Lambda and Azure functions in the sense that it also enables you to create FaaS based solutions.  However, the approach is very different.  Unlike AWS or Microsoft, MetaCall does not host and handle these functions via triggers. MetaCall automagically converts your code into a **[Function Mesh](https://medium.com/@metacall/function-mesh-architecture-c0304ba4bad0)**  and auto-scales individual hot parts or functions of your app.  Both Lambda and Azure Functions are similar in functionality as they propose to segment the application architecture in order to scale only the parts that require scaling, thus making consumption efficient with pay-per-function-use pricing model.  Unlike these two, MetaCall is not cloud provider proprietary as it can work for applications that are distributed across cloud, on-premises and even hybrid applications.
