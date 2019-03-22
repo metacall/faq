@@ -301,7 +301,7 @@ If you look closely, REST APIs comprise of CRUD (Create, Read, Update, Delete) o
 
 <div id='BQ3'/>
 
-### What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless}(https://kubeless.io/)**, other competing technologies?
+### What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless](https://kubeless.io/)**, other competing technologies?
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
