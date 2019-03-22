@@ -409,7 +409,7 @@ Following are a list of benefits that MetaCall usage brings in to the developers
 
 Here is how MetaCall overcomes some of the drawbacks associated with AWS Lambda:
 
-* Metacall does not have **[typical serverless cold start] (https://thenewstack.io/how-cold-starts-impact-serverless-performance/)** performance issues.
+* Metacall does not have **[typical serverless cold start](https://thenewstack.io/how-cold-starts-impact-serverless-performance/)** performance issues.
 
 * MetaCall automatically builds all dependencies with your functions in a standard way, using existing package managers.
 
