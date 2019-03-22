@@ -29,6 +29,7 @@
 24.	[Who deploys MetaCall and scales it at runtime?](#AQ24)
 25.	[Is MetaCall pluggable and supports different protocols?](#AQ25)
 26. [What kind of FaaS does MetaCall support?](#AQ26)
+27. [Are there any specific industries or applications that can benefit from MetaCall based application designs?](#AQ27)
 
 ## B. MetaCall vs. other similar technologies
 
@@ -38,6 +39,7 @@
 4. [What is the difference between MetaCall and AWS Lambda?](#BQ4)
 5. [Is MetaCall similar to AWS Lambda, Microsoft Azure Functions and Twilio? ](#BQ5)
 6. [How does MetaCall provide value add that is beyond what other similar services such as AWS Lambda offer? ](#BQ6)
+7.	[How does MetaCall simplify the complex and time-consuming application restructuring required for serverless architectures based on AWS Lambda, Microsoft Azure Functions or Google Functions?](#BQ7)
 ---
 
 <div id='AQ1'/>
@@ -276,11 +278,16 @@ Self – automated? There is way to limit resource consumption – say by $$$ or
 ### Is MetaCall pluggable and supports different protocols?
 MetaCall implementation has two interfaces – on caller side the function gateway uses simple http (for now) – in future it could be pluggable so it could use GraphQL or XML or WebSockets.  At the other end, for function level communication or function gateway, it uses JSON-RPC. That could be pluggable too – it could use QUIC or gRPC  or RabbitMQ – whichever works better for the user in terms of solution performance, required communication bandwidth and latency.
 
-
 <div id='AQ26'/>
 
-### What kind of FaaS does MetaCall support?]
+### What kind of FaaS does MetaCall support?
 *Answer TBD*
+
+<div id='AQ27'/>
+
+### Are there any specific industries or applications that can benefit from MetaCall based application designs?
+
+MetaCall is not industry or application specific solution.  It is a newer, better model for building your Function Mesh.  (More details TBD by V)
 
 ## MetaCall vs. other similar technologies
 
@@ -426,4 +433,11 @@ In short, instead of having to use AWS API Gateway, DynamoDB, Lambda, Elastic Lo
 All this is taken care of by MetaCall, with no additional cost or new knowledge required for the developer.
 
 Besides the above, with MetaCall, there is an extra benefit: your existing code can be migrated to MetaCall easily, because as it does not need a new framework. MetaCall can consume classical functions. Migrations to MetaCall based FaaS environment can be done automatically.
+
+<div id='BQ7'/>
+
+### How does MetaCall simplify the complex and time-consuming application restructuring required for serverless architectures based on AWS Lambda, Microsoft Azure Functions or Google Functions?
+
+One of core objectives of MetaCall is to simplify application migration to FaaS. Most of the problems related to ‘fitting’ an existing application into FaaS model are caused by the limitations of current FaaS designs. With the cutting-edge design of MetaCall you will be able to migrate a monolithic application into FaaS easily. Refer to [previous answer](#BQ6) for more details. 
+
 
