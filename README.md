@@ -1,7 +1,7 @@
 # FAQ
 **MetaCall Frequently Asked Questions.**
 
-## A. General
+## Section A:  General
 
 1. [What is MetaCall?](#AQ1)
 2. [What is MetaCall used for?](#AQ2)
@@ -30,8 +30,9 @@
 25.	[Is MetaCall pluggable and supports different protocols?](#AQ25)
 26. [What kind of FaaS does MetaCall support?](#AQ26)
 27. [Are there any specific industries or applications that can benefit from MetaCall based application designs?](#AQ27)
+28. [How does MetaCall model impact contemporary application design and architecture?](#AQ28)
 
-## B. MetaCall vs. other similar technologies
+## Section B:  MetaCall vs. alternative solutions
 
 1. [How is MetaCall different from REST and RPC?](#BQ1)
 2.	[How is MetaCall same or different or better than pure REST and RPC?](#BQ2)
@@ -41,6 +42,8 @@
 6. [How does MetaCall provide value add that is beyond what other similar services such as AWS Lambda offer? ](#BQ6)
 7.	[How does MetaCall simplify the complex and time-consuming application restructuring required for serverless architectures based on AWS Lambda, Microsoft Azure Functions or Google Functions?](#BQ7)
 ---
+
+## Section A: General
 
 <div id='AQ1'/>
 
@@ -287,9 +290,20 @@ MetaCall implementation has two interfaces – on caller side the function gatew
 
 ### Are there any specific industries or applications that can benefit from MetaCall based application designs?
 
-MetaCall is not industry or application specific solution.  It is a newer, better model for building your Function Mesh.  (More details TBD by V)
+MetaCall is not industry or application specific solution.  It is a newer, better model for bu
+ilding your Function Mesh.  (More details TBD by V)
 
-## MetaCall vs. other similar technologies
+<div id='AQ28'/>
+
+### How does MetaCall model impact contemporary application design and architecture?
+
+Application architectures have evolved from traditional monolithic applications and SoA architectures to applications built using micro-services architecture. The next step in evolution in serverless and Functions – FaaS.  The granularity of application ‘execution-unit’ has become finer and finer at each step of evolution. Consequently, application complexity has exploded and begun to impact application development and distributed application architectures.
+
+Application granularity and resultant complexity is a disadvantage to distributed application development and testing process and a big drain on compute resources. Ideally, this granularity ought to be transparent to impart its benefits seamlessly to modern applications – for example – efficient and optimal consumption of underlying compute and cloud resources and services.  This granularity, ideally, should not reside in the hands of the developer. Instead, it should be part of the underlying infrastructure. 
+
+With MetaCall FaaS model, you can maintain your traditional monolithic applications or contemporary micro-services-based architectures, gain the benefit of FaaS granularity without having to bother about application restructuring or developmental complexity. Your legacy code and old big architectures can be migrated to serverless and FaaS models, fully distributed by functions easily with the use of MetaCall and without needing to refactor it, or spending extra resources in development, DevOps or specialized serverless developers.
+
+## Section B: MetaCall vs. alternative solutions
 
 <div id='BQ1'/>
 
