@@ -52,7 +52,7 @@ Last update: March 22, 2019
 ### What is MetaCall?
 MetaCall helps you build serverless applications using a more fine-grained, scalable and NoOps oriented FunctionMesh instead of ServiceMesh and DevOps approach. MetaCall automagically converts your code into a **[Function Mesh](https://medium.com/@metacall/function-mesh-architecture-c0304ba4bad0)** and auto-scales individual hot parts or functions of your app. 
 
-MetaCall not only helps to simplify application development but also speedsup time to market. Developers can focus purely on code and  business logic instead of expending expensive development cycles on DevOps.
+MetaCall not only helps to simplify application development but also speeds up time to market. Developers can focus purely on code and  business logic instead of expending expensive development cycles on DevOps.
 
 ### What is MetaCall used for?
 
@@ -78,7 +78,7 @@ The idea MetaCall Function Mesh is to unify the development. MetaCall allows a n
 
 ### Is MetaCall a Polyglot? 
 
-MetaCall can be seen as a Polyglot. A multi-language interpreter that can execute different programming languages at the same time. But MetaCall itself is not a MetaVirtualMachine, in fact it only provides foreign function interface calls between programming languages. It can help integrate functionality across application components written in different languages. We are using it to build our core for the FaaS. By this way we achieve an high performance of the execution of the calls.
+**[MetaCall Core](https://github.com/metacall/core)** can be seen as a Polyglot. A multi-language interpreter that can execute different programming languages at the same time. But MetaCall itself is not a MetaVirtualMachine, in fact it only provides foreign function interface calls between programming languages. It can help integrate functionality across application components written in different languages. We are using it to build our core for the FaaS. By this way we achieve an high performance of the execution of the calls.
 
 For a complete list of supported languages, refer to **[MetaCall Language Support - Backend](https://github.com/metacall/core#2-language-support-backends)**.
 
@@ -95,16 +95,16 @@ MetaCall enables developers to test the code in local just as it would run in pr
 
 ### Which applications / workloads have the potential to benefit the most from MetaCall?
 
-|   Application Type               |   Benefits with MetaCall   |   Comments             |
-|----------------------------------|:--------------------------:|------------------------|
-| Application with persistent or long-lived interactions and inter-service connections for performing tasks that can scale up or down quickly| Yes         |     `Need confirmation from V`     |
-| Applications with short term intermittent communication across components or micro-services where these interactions can scale up or down fast | Yes         |     `Need confirmation from V`     |
-| Applications that are not front-end facing but in deeper end of the stack and deal with caches, databases and intermediary services |Yes         |     `Need confirmation from V`     |
-| Applications with bi-directional data flow |? | |
-| CPU-centric applications |? | |
-| I/O intensive applications |? | |
-| Message Broker based big data applications? (ETL, Hadoop, Spark, Flink – data warehousing apps) | ? | |
-| Real time messaging application for Big Data Analytics | ? | *Need confirmation from V* **[Reference: Real time messaging for analytics](https://medium.com/@natemurthy/rest-rpc-and-brokered-messaging-b775aeb0db3)**|
+| Application Type                                                                                                                               | Benefits with MetaCall | Comments                                                                                                                                                  |
+|------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Application with persistent or long-lived interactions and inter-service connections for performing tasks that can scale up or down quickly    |          Yes           | `Need confirmation from V`                                                                                                                                |
+| Applications with short term intermittent communication across components or micro-services where these interactions can scale up or down fast |          Yes           | `Need confirmation from V`                                                                                                                                |
+| Applications that are not front-end facing but in deeper end of the stack and deal with caches, databases and intermediary services            |          Yes           | `Need confirmation from V`                                                                                                                                |
+| Applications with bi-directional data flow                                                                                                     |           ?            |                                                                                                                                                           |
+| CPU-centric applications                                                                                                                       |           ?            |                                                                                                                                                           |
+| I/O intensive applications                                                                                                                     |           ?            |                                                                                                                                                           |
+| Message Broker based big data applications? (ETL, Hadoop, Spark, Flink – data warehousing apps)                                                |           ?            |                                                                                                                                                           |
+| Real time messaging application for Big Data Analytics                                                                                         |           ?            | *Need confirmation from V* **[Reference: Real time messaging for analytics](https://medium.com/@natemurthy/rest-rpc-and-brokered-messaging-b775aeb0db3)** |
 ---
 
 ### Can MetaCall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?
@@ -119,21 +119,35 @@ MetaCall can be used for either of the above.  It is not limited to an applicati
 
 Here is some of the available benchmark data for MetaCall (beta). More benchmarking tests are underway and will be updated shortly.
 
-**Test Description**
+**Benchmark Description**
 
 Simple function that merges two strings using the following technologies:
 
-1.	Flask (Python http server)
-2.	Express (Node.js http server)
-3.	MetaCall with Python
-4.	MetaCall with Node.js
-5.	NginX (no back end at all)
+1. Flask (Python HTTP server)
+2. Express (Node.js HTTP server)
+3. MetaCall with Python
+4. MetaCall with Node.js
+5. NginX (no back-end at all)
 
-**Results:** 
+**Results:**
 
-- MetaCall with Node.js is 0.3-0.4X faster than Express (Node.js http server)
-- Typically, Express is much faster than Flask because it is I/O focused. With MetaCall with Python is 17X to 30X faster than Flask.  {Is it faster than Express – does MetaCall put flask on steroids in a way?}
-- MetaCall with Python is 2X faster than MetaCall with Node.js
+|      Software      | Requests/sec | Transfer/sec |    Errors     |
+|:------------------:|:------------:|:------------:|:-------------:|
+|       Flask        |    614.82    |   100.87KB   | 1715 Timeouts |
+|      Express       |   6433.61    |    1.39MB    | 652 Timeouts  |
+| MetaCall (Python)  |   11620.65   |    1.80MB    |     None      |
+| MetaCall (Node.js) |   8190.71    |    1.27MB    |     None      |
+|       NginX        |   14224.61   |    2.48MB    |     None      |
+
+
+**Conclusions:**
+
+- MetaCall with Node.js is 1.3-1.4X faster than Express (Node.js HTTP server)
+- MetaCall with Python is 17X to 30X faster than Flask.
+- MetaCall with Python is 2X faster than MetaCall with Node.js. Typically, Express is much faster than Flask because it is I/O focused, but using MetaCall Python code outperforms Node.js.
+- MetaCall has no errors in comparison to Flask or Express.
+
+
 
 **Benchmark configuration details**
 No connections used, only function calls to understand performance overhead of call itself. MetaCall can do 1M calls per second without any optimizations turned on in a dual core Xeon processor. Intel Xeon processor with 20 cores – server. VM with 10 cores was used to run the test. Xeon W-2155 13.75M cache, 3.3GHz processor.
