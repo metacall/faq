@@ -16,7 +16,10 @@ Last update: March 22, 2019
         - [Who is the target audience for MetaCall?](#who-is-the-target-audience-for-metacall)
         - [Which applications / workloads have the potential to benefit the most from MetaCall?](#which-applications--workloads-have-the-potential-to-benefit-the-most-from-metacall)
         - [Can MetaCall be used for SOA / Legacy / Monolithic / Micro-services architecture-based applications? Or is it suited for only some of these application architectures?](#can-metacall-be-used-for-soa--legacy--monolithic--micro-services-architecture-based-applications-or-is-it-suited-for-only-some-of-these-application-architectures)
+    - [Is MetaCall meant for private function calls or also for public APIs?](#is-metacall-meant-for-private-function-calls-or-also-for-public-apis)
         - [Is there any benchmark data to show how MetaCall compares with alternative technologies?](#is-there-any-benchmark-data-to-show-how-metacall-compares-with-alternative-technologies)
+            - [MetaCall vs HTTP Servers Benchmark](#metacall-vs-http-servers-benchmark)
+            - [MetaCall FFI vs Runtime Call Benchmark](#metacall-ffi-vs-runtime-call-benchmark)
         - [What are some of the benefits associated with adopting MetaCall?](#what-are-some-of-the-benefits-associated-with-adopting-metacall)
         - [Are there any challenges associated with MetaCall adoption?](#are-there-any-challenges-associated-with-metacall-adoption)
         - [How is MetaCall implemented? What is its high-level architecture?](#how-is-metacall-implemented-what-is-its-high-level-architecture)
@@ -111,15 +114,17 @@ MetaCall enables developers to test the code in local just as it would run in pr
 
 MetaCall can be used for either of the above.  It is not limited to an application architecture type.
 
-##	Is MetaCall meant for private function calls or also for public APIs?
+## Is MetaCall meant for private function calls or also for public APIs?
 
-*Answer - check with V*
+Yes, you can secure your APIs with MetaCall or maintain them public from the Dashboard.
 
 ### Is there any benchmark data to show how MetaCall compares with alternative technologies?
 
-Here is some of the available benchmark data for MetaCall (beta). More benchmarking tests are underway and will be updated shortly.
+Here is some of the available benchmark data for MetaCall (Beta). More benchmarking tests are underway and will be updated shortly.
 
-**Benchmark Description**
+#### MetaCall vs HTTP Servers Benchmark
+
+**Benchmark Description:**
 
 Simple function that merges two strings using the following technologies:
 
@@ -128,6 +133,12 @@ Simple function that merges two strings using the following technologies:
 3. MetaCall with Python
 4. MetaCall with Node.js
 5. NginX (no back-end at all)
+
+**Specs:**
+
+- [Intel Xeon processor with 10 cores and 20 threads, 13.75M cache, 3.3GHz processor, 32GB RAM – server](https://ark.intel.com/content/www/us/en/ark/products/125042/intel-xeon-w-2155-processor-13-75m-cache-3-30-ghz.html).
+- [QEMU Virtual Machine](https://www.qemu.org/) with 10 threads assigned and 16GB RAM with Debian Stretch as guest OS.
+- [wrk2](https://github.com/giltene/wrk2) as benchmarking tool.
 
 **Results:**
 
@@ -139,18 +150,42 @@ Simple function that merges two strings using the following technologies:
 | MetaCall (Node.js) |   8190.71    |    1.27MB    |     None      |
 |       NginX        |   14224.61   |    2.48MB    |     None      |
 
-
 **Conclusions:**
 
-- MetaCall with Node.js is 1.3-1.4X faster than Express (Node.js HTTP server)
-- MetaCall with Python is 17X to 30X faster than Flask.
+- MetaCall with Node.js is 1.3-1.4X faster than Express (Node.js HTTP server).
+- MetaCall with Python is 17X to 30X faster than Flask (Python HTTP server).
 - MetaCall with Python is 2X faster than MetaCall with Node.js. Typically, Express is much faster than Flask because it is I/O focused, but using MetaCall Python code outperforms Node.js.
 - MetaCall has no errors in comparison to Flask or Express.
 
+#### MetaCall FFI vs Runtime Call Benchmark
 
+**Benchmark Description:**
 
-**Benchmark configuration details**
-No connections used, only function calls to understand performance overhead of call itself. MetaCall can do 1M calls per second without any optimizations turned on in a dual core Xeon processor. Intel Xeon processor with 20 cores – server. VM with 10 cores was used to run the test. Xeon W-2155 13.75M cache, 3.3GHz processor.
+Comparison of a Python C API call (hard-coded) versus a MetaCall call (ffi). No connection used, this is focused to see what is the overhead of MetaCall when executing calls between run-times. No optimization was used when compiling MetaCall (debug mode and all call optimizations disabled). One million calls was tried with two long integers for each call as an argument, and another long integer as a return value. The test has been done using only one thread, although the VM has more than one assigned to it.
+
+**Specs:**
+
+- Intel Core i5-4210M CPU @ 2.60GHz, 8GB RAM – laptop.
+- VirtualBox Virtual Machine with 2 threads and 3GB of RAM with Debian Stretch as guest OS.
+- Google Test and Google Bench as benchmark software.
+
+**Source:**
+
+- [MetaCall Core Benchmarks](https://github.com/metacall/core/tree/develop/source/benchmarks).
+
+**Results:**
+
+|                Software                 |  Time  |  Bandwidth  |    Calls/sec     |
+|:---------------------------------------:|:------:|:-----------:|:----------------:|
+|              Python C API               | 544 ms | 42.0545MB/s | 1.75227M items/s |
+| MetaCall Python Variadic Arguments Call | 988 ms | 23.1689MB/s | 988.54k items/s  |
+|  MetaCall Python Array Arguments Call   | 903 ms | 25.353MB/s  | 1081.73k items/s |
+
+**Conclusions:**
+
+- Python C API performs 1.7M calls per second versus 1.081M of MetaCall (Array Arguments Call).
+- There is still room for improvement and optimization with MetaCall, at least 1.5X times the current performance.
+- Although MetaCall FFI is slower than hard-coded Python C API calls it stills does 1M calls per core per second. This means that if we put it on a FaaS or HTTP server, the bottleneck will be 1M calls per thread per second, which is far away from NginX performance in terms of requests per second.
 
 ### What are some of the benefits associated with adopting MetaCall?
 
