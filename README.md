@@ -265,10 +265,6 @@ Refer to figures below that show phased migration of PHP code to Node.js:
 
 Without MetaCall, you will need 6 months or so to move legacy code into new node.js or other models before you can verify and test. With metacall, you can do it in chunks – it helps with phased migration.  
 
-| ![Phase Approach4][phase4] |
-|:---:|
-| *Legacy code migration and integration in phased manner* |
-
 As indicated in the figure above, with MetaCall, you don’t need two teams – one to maintain legacy and another to refactor the code and make it work again using newer design and application architecture models.  Helps agile and reduces TTM.
 
 ### How is MetaCall different in terms of number of functions that can be invoked or called per file?
