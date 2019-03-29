@@ -249,11 +249,14 @@ Let us consider this example as shown in figures below:
 
 [phase]: https://github.com/metacall/faq/blob/master/fig/fn1.png
 
-Fn A is in PHP and it calls code B, C and D. With MetaCall, you can progressively migrate functions to say Node JS or other implementations required as part of evolving the legacy code without having to rewrite or refactor the whole of legacy code. Refer to figures below that show phased migration of PHP code to Node.js:
+Lets say all functions are written in PHP, and ´Fn A´ calls ´Fn B´, ´C´ and ´D´. 
+Now you want to update your code with a brand new Node.js funcion ´Fn C'´.
+With MetaCall, you can progressively transfer your calls from ´Fn C´ to ´Fn C'´ with ease, allowing you to migrate legacy code in production.
+Refer to figures below that show phased migration of PHP code to Node.js:
 
 | ![Phase Approach1][phase1] | ![Phase Approach2][phase2]  | ![Phase Approach3][phase3] | 
 |:---:|:---:|:---:|
-| *Function C is implemented in Node.js and rest code is as is* | *Function B is nmigrated to Node.js* | *Function B, C and D are all in Node.js now* | 
+| *Function C is implemented in Node.js and rest code is as is* | *Function B is migrated to Node.js* | *Function B, C and D are all in Node.js now* | 
 
 [phase1]: https://github.com/metacall/faq/blob/master/fig/fn2.png
 [phase2]: https://github.com/metacall/faq/blob/master/fig/fn3.png
