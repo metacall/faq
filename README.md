@@ -211,9 +211,14 @@ MetaCall implementation uses a higher-level protocol (QUIC / HTTP3) to reduce RP
 MetaCall has unique scaling model that is more granular and more compute resource-efficient than micro-services and REST based API interaction models. MetaCall can scale at 3 levels – per process, per pod and per function-mesh.  Basically, it allows you to do more work with less resources and enables finer-grained resource utilization. {Any benchmark run numbers here would be useful – say with MetaCall, xyz micro-services benchmark ran 5X times faster than without MetaCall.}
 
 ### Is MetaCall cross-platform?
-MetaCall is a cross platform architecture – supports any of the following Oss
-	Currently: Debian Linux
-	In future: OSX (?)
+
+MetaCall is a cross platform architecture – it is designed to work in multiple platforms. Current tested platforms:
+
+| Platform |                     Version                     | Architecture |
+|:--------:|:-----------------------------------------------:|:------------:|
+| Windows  |                    7, 8, 10                     | x86, x86-64  |
+|  Linux   | Debian (8, 9, 10), Ubuntu (14.04, 16.04, 18.04) |    x86-64    |
+|  MacOs   |                      10.14                      |    x86-64    |
 
 ### What are some of the MetaCall use cases and examples?
 
