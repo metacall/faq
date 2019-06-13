@@ -336,15 +336,15 @@ Refer to the picture below.  It shows how MetaCall differs from competition:
 
 Unlike Lambda, MetaCall does not have cold starts. Refer to the figures below:
 
-| ![Lambda Model][lambda] |
+| ![Lambda Model][lambda]{ width=50% } |
 |:---:|
-| *Function scaling model with Lambda* |
+| **Fig 1:** *Function scaling model with Lambda* |
 
 [lambda]: https://github.com/metacall/faq/blob/master/fig/lambda.png
 
-| ![MetaCall Model][metacall] |
+| ![MetaCall Model][metacall]{ width=50% } |
 |:---:|
-| *Function scaling model with MetaCall* |
+| **Fig 2:** *Function scaling model with MetaCall* |
 
 [metacall]: https://github.com/metacall/faq/blob/master/fig/metacall.png
 
