@@ -41,7 +41,7 @@ Last update: March 22, 2019
   - [Section B: MetaCall vs. alternative solutions](#section-b-metacall-vs-alternative-solutions)
     - [How is MetaCall different from REST and RPC](#how-is-metacall-different-from-rest-and-rpc)
   - [How is MetaCall same or different or better than pure REST and RPC](#how-is-metacall-same-or-different-or-better-than-pure-rest-and-rpc)
-    - [What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless](https://kubeless.io/)**, other competing technologies](#what-are-the-key-metacall-differentiations-factors-from-say-openfaashttpswwwopenfaascom-zeithttpszeitco-kubelesshttpskubelessio-other-competing-technologies)
+    - [What are the key MetaCall differentiations factors from OpenFaaS, Zeit, Kubeless, other competing technologies](#what-are-the-key-metacall-differentiations-factors-from-openfaas-zeit-kubeless-other-competing-technologies)
     - [What is the difference between MetaCall and AWS Lambda](#what-is-the-difference-between-metacall-and-aws-lambda)
     - [Is MetaCall similar to AWS Lambda, Microsoft Azure Functions and Twilio](#is-metacall-similar-to-aws-lambda-microsoft-azure-functions-and-twilio)
     - [How does MetaCall provide value add that is beyond what other similar services such as AWS Lambda offer](#how-does-metacall-provide-value-add-that-is-beyond-what-other-similar-services-such-as-aws-lambda-offer)
@@ -328,7 +328,7 @@ If you look closely, REST APIs comprise of CRUD (Create, Read, Update, Delete) o
 - RPC is suitable for one-one or one-many communications.  Many to one such as in data streaming, fan-in and fan-out is a tricky one – with MetaCall – the implementation addresses this (?)
 - MetaCall is better than pure RPC as it provides function gateway functionality and more scalable and higher in performance than pure RPC.
 
-### What are the key MetaCall differentiations factors from say **[OpenFaaS](https://www.openfaas.com/)**, **[Zeit](https://zeit.co/)**, **[Kubeless](https://kubeless.io/)**, other competing technologies
+### What are the key MetaCall differentiations factors from OpenFaaS, Zeit, Kubeless, other competing technologies
 
 Refer to the picture below.  It shows how MetaCall differs from competition:
 
